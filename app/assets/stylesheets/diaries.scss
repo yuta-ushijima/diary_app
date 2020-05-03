@@ -1,0 +1,34 @@
+  .top-wrapper {
+    padding: 500px 0 500px 0;
+    margin-top: 65px;
+    color: black;
+    text-align: center;
+    position: relative;
+    border: 5px solid plum;
+}
+
+.container {
+    position: absolute;
+    top: 55%;
+    left:  65%;
+}
+
+.registration-box {
+    display: inline-block;
+    text-align: right;
+    margin-top: 20px;
+    border: 5px solid plum;
+}
+
+  .c-table {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 100%;
+  }
+
+  .c-table__td {
+      display: inline-block;
+      text-align: center;
+      padding: 0 20px;
+  }

@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title
+      | DiaryApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+  body
+    header
+      .container
+        h1.c-header__left Diary
+        .header__right
+          = link_to 'ユーザー登録', new_user_path, class: 'c-header__nav'
+          = link_to 'ログイン', login_path, class: 'c-header__nav'
+          = link_to 'ログアウト', logout_path, method: :delete, class: 'c-header__nav'
+        - if current_user && current_user.email
+          span.c-header__nav ようこそ、#{current_user.email}さん。
+
+    - if flash.notice.present?
+      .c-alert.c-alert--success= flash.notice
+    = yield
