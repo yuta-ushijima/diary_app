@@ -1,22 +1,17 @@
-  version: '3'
-  services:
-    nginx:
-      volumes:
-        - web
-      build: containers/nginx
-      ports:
-        - "80:80"
-      depends_on:
-        - web
-    db:
-      image: postgres
-      volumes:
-        - ./tmp/db:/var/lib/postgresql/data
-      environment:
-        POSTGRES_PASSWORD: 'postgres'
-    web:
-      build: .
-      volumes:
-        - /diary_app/log
-      depends_on:
-        - db
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/diary_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
