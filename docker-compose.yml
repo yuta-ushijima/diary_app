@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   nginx:
     volumes:
@@ -6,6 +6,8 @@ services:
     build: containers/nginx
     ports:
       - "80:80"
+    volumes_from:
+      - web
     depends_on:
       - web
   db:
