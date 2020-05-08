@@ -1,22 +1,22 @@
-  version: '3'
-  services:
-    nginx:
-      volumes:
-        - web
-      build: containers/nginx
-      ports:
-        - "80:80"
-      depends_on:
-        - web
-    db:
-      image: postgres
-      volumes:
-        - ./tmp/db:/var/lib/postgresql/data
-      environment:
-        POSTGRES_PASSWORD: 'postgres'
-    web:
-      build: .
-      volumes:
-        - /diary_app/log
-      depends_on:
-        - db
+version: '3'
+services:
+  nginx:
+    volumes:
+      - $PWD/nginx:/usr/share/nginx/
+    build: containers/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+  web:
+    build: .
+    volumes:
+      - /diary_app/log
+    depends_on:
+      - db
